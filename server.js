@@ -8,13 +8,14 @@ app.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));
 
 // DB connection
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'yourpassword',
-  database: 'chatdb'
+  host: process.env.DB_HOST,   // set in Render env vars
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  port: 3306
 });
 
-// Endpoint to get current user
+// Endpoint to get current username
 app.get('/api/username', (req, res) => {
   if (!req.session.userId) return res.json({ username: 'Guest' });
   db.query('SELECT username FROM users WHERE id=?', [req.session.userId], (err, results) => {
