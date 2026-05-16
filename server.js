@@ -5,10 +5,11 @@ wss.on('connection', (ws) => {
   console.log("Client connected");
 
   ws.on('message', (message) => {
-    // Broadcast to all clients
+    // Convert message to string before broadcasting
+    const text = message.toString();
     wss.clients.forEach(client => {
       if (client.readyState === WebSocket.OPEN) {
-        client.send(message);
+        client.send(text);
       }
     });
   });
@@ -17,4 +18,3 @@ wss.on('connection', (ws) => {
     console.log("Client disconnected");
   });
 });
-
