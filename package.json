@@ -1,11 +1,18 @@
 {
   "name": "global-chat",
   "version": "1.0.0",
+  "description": "Neon themed global chat with WebSocket and DB username fetch",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "ws": "^8.13.0"
+    "express": "^4.19.2",
+    "express-session": "^1.17.3",
+    "mysql2": "^3.9.7",
+    "ws": "^8.18.0"
+  },
+  "engines": {
+    "node": "24.x"
   }
 }
